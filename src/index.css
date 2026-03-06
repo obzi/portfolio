@@ -16,7 +16,6 @@
     color: #ffffff;
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    cursor: none;
   }
   ::-webkit-scrollbar {
     width: 6px;
@@ -48,6 +47,3 @@
   }
 }
 
-@media (hover: none) {
-  body { cursor: auto; }
-}

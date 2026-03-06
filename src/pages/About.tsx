@@ -8,32 +8,32 @@ const techCategories = [
   {
     label: 'Frontend',
     icon: Code2,
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
   },
   {
     label: 'Backend',
     icon: Server,
-    items: ['Node.js', 'Express', 'REST API', 'GraphQL', 'JWT auth'],
+    items: ['Node.js', 'Express', 'REST API', 'GraphQL', 'JWT auth', 'WebSockets'],
   },
   {
     label: 'Databáze',
     icon: Database,
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase'],
+    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase', 'SQL migrace'],
   },
   {
     label: 'Infrastruktura',
     icon: Cpu,
-    items: ['Docker', 'AWS', 'CI/CD', 'Vercel', 'Nginx'],
+    items: ['Docker', 'AWS', 'CI/CD', 'Vercel', 'Nginx', 'GitHub Actions'],
   },
   {
     label: 'Integrace',
     icon: Globe,
-    items: ['Stripe', 'SendGrid', 'Webhooks', 'OAuth 2.0', 'REST klienti'],
+    items: ['Stripe', 'SendGrid', 'Webhooks', 'OAuth 2.0', 'REST klienti', 'Firebase'],
   },
   {
     label: 'Přístupy',
     icon: Layers,
-    items: ['Clean Architecture', 'TDD', 'Agile', 'Code review', 'DRY & SOLID'],
+    items: ['Clean Architecture', 'TDD', 'Agile', 'Code review', 'DRY & SOLID', 'Git workflow'],
   },
 ]
 
@@ -136,8 +136,8 @@ export default function About() {
             />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {techCategories.map((cat, i) => (
-                <AnimatedSection key={cat.label} delay={i * 0.07}>
-                  <div className="bg-dark-card border border-dark-border rounded-2xl p-5 hover:border-gold/30 transition-colors group">
+                <AnimatedSection key={cat.label} delay={i * 0.07} className="h-full">
+                  <div className="bg-dark-card border border-dark-border rounded-2xl p-5 h-full hover:border-gold/30 transition-colors group">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
                         <cat.icon size={17} className="text-gold" />

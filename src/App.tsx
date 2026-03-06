@@ -9,7 +9,6 @@ import Pricing from '@/pages/Pricing'
 import Contact from '@/pages/Contact'
 import Portfolio from '@/pages/Portfolio'
 import NotFound from '@/pages/NotFound'
-import CustomCursor from '@/components/CustomCursor'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -31,8 +30,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <Router>
-      <CustomCursor />
-      <div className="min-h-screen bg-dark flex flex-col">
+<div className="min-h-screen bg-dark flex flex-col">
         <Navbar />
         <main className="flex-1">
           <AnimatedRoutes />
