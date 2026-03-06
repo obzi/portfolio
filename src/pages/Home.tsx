@@ -4,20 +4,26 @@ import { Link } from 'react-router-dom'
 import { ArrowDown, Code2, Layers, Zap } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import ParticleBackground from '@/components/ParticleBackground'
-
-const stats = [
-  { label: 'Projektů dokončeno', value: '50+' },
-  { label: 'Spokojených klientů', value: '30+' },
-  { label: 'Let zkušeností', value: '8+' },
-]
-
-const highlights = [
-  { icon: Code2, text: 'Čistý kód' },
-  { icon: Layers, text: 'Moderní stack' },
-  { icon: Zap, text: 'Rychlá dodávka' },
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
+  const { t } = useLanguage()
+
+  // Build TypeAnimation sequence: ['text', 2000, 'text', 2000, ...]
+  const typingSequence = t.home.typing.flatMap((role) => [role, 2000] as [string, number])
+
+  const stats = [
+    { label: t.home.stat1label, value: '50+' },
+    { label: t.home.stat2label, value: '30+' },
+    { label: t.home.stat3label, value: '8+' },
+  ]
+
+  const highlights = [
+    { icon: Code2, text: t.home.highlight1 },
+    { icon: Layers, text: t.home.highlight2 },
+    { icon: Zap, text: t.home.highlight3 },
+  ]
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -37,17 +43,17 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-gold/5 text-gold text-sm mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-            Dostupný pro nové projekty
+            {t.home.badge}
           </motion.div>
 
-          {/* Name */}
+          {/* Brand title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="font-display text-5xl md:text-7xl font-bold mb-4"
+            className="font-display text-5xl md:text-7xl font-bold mb-4 text-gradient"
           >
-            Tomáš <span className="text-gradient">Obzina</span>
+            {t.home.title}
           </motion.h1>
 
           {/* Typing animation */}
@@ -58,16 +64,7 @@ export default function Home() {
             className="text-xl md:text-2xl text-white/60 mb-6 h-8"
           >
             <TypeAnimation
-              sequence={[
-                'Full-Stack Developer',
-                2000,
-                'React & Node.js Specialista',
-                2000,
-                'UI/UX Nadšenec',
-                2000,
-                'Váš technologický partner',
-                2000,
-              ]}
+              sequence={typingSequence}
               wrapper="span"
               speed={50}
               repeat={Infinity}
@@ -81,8 +78,7 @@ export default function Home() {
             transition={{ delay: 0.7 }}
             className="text-white/50 text-lg max-w-2xl mx-auto mb-12"
           >
-            Vytvářím moderní webové aplikace, které spojují krásný design s výkonnou technologií.
-            Od nápadu po spuštění — s precizností a péčí o každý detail.
+            {t.home.tagline}
           </motion.p>
 
           {/* CTAs */}
@@ -96,13 +92,13 @@ export default function Home() {
               to="/pricing"
               className="px-8 py-4 bg-gold text-dark font-semibold rounded hover:bg-gold-light transition-all duration-200 shadow-lg shadow-gold/20 hover:shadow-gold/40"
             >
-              Zobrazit ceník
+              {t.home.cta1}
             </Link>
             <Link
               to="/about"
               className="px-8 py-4 border border-dark-border text-white/70 font-medium rounded hover:border-gold hover:text-gold transition-all duration-200"
             >
-              Zjistit více o mně
+              {t.home.cta2}
             </Link>
           </motion.div>
 
@@ -156,7 +152,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="font-display text-3xl md:text-4xl font-bold mb-6"
           >
-            Proměním vaši vizi v <span className="text-gradient">digitální realitu</span>
+            {t.home.introTitle}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -165,14 +161,13 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="text-white/60 text-lg leading-relaxed mb-8"
           >
-            Specializuji se na vývoj webových aplikací na míru — od jednoduchých prezentačních
-            webů po komplexní SaaS platformy. Dbám na výkon, bezpečnost a skvělý uživatelský zážitek.
+            {t.home.introText}
           </motion.p>
           <Link
             to="/services"
             className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-medium"
           >
-            Prozkoumat mé služby →
+            {t.home.introLink}
           </Link>
         </div>
       </section>
