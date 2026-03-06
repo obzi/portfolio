@@ -3,62 +3,28 @@ import { Code2, Database, Globe, Server, Layers, Cpu } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
+import { useLanguage } from '@/context/LanguageContext'
 
-const techCategories = [
-  {
-    label: 'Frontend',
-    icon: Code2,
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-  },
-  {
-    label: 'Backend',
-    icon: Server,
-    items: ['Node.js', 'Express', 'REST API', 'GraphQL', 'JWT auth', 'WebSockets'],
-  },
-  {
-    label: 'Databáze',
-    icon: Database,
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase', 'SQL migrace'],
-  },
-  {
-    label: 'Infrastruktura',
-    icon: Cpu,
-    items: ['Docker', 'AWS', 'CI/CD', 'Vercel', 'Nginx', 'GitHub Actions'],
-  },
-  {
-    label: 'Integrace',
-    icon: Globe,
-    items: ['Stripe', 'SendGrid', 'Webhooks', 'OAuth 2.0', 'REST klienti', 'Firebase'],
-  },
-  {
-    label: 'Přístupy',
-    icon: Layers,
-    items: ['Clean Architecture', 'TDD', 'Agile', 'Code review', 'DRY & SOLID', 'Git workflow'],
-  },
+// Tech stack items are NOT localized — these are technology names
+const techItems = [
+  ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+  ['Node.js', 'Express', 'REST API', 'GraphQL', 'JWT auth', 'WebSockets'],
+  ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase', 'SQL migrace'],
+  ['Docker', 'AWS', 'CI/CD', 'Vercel', 'Nginx', 'GitHub Actions'],
+  ['Stripe', 'SendGrid', 'Webhooks', 'OAuth 2.0', 'REST klienti', 'Firebase'],
+  ['Clean Architecture', 'TDD', 'Agile', 'Code review', 'DRY & SOLID', 'Git workflow'],
 ]
-
-const timeline = [
-  {
-    year: '2024–nyní',
-    role: 'Senior Full-Stack Developer',
-    company: 'Freelance',
-    desc: 'Vývoj webových aplikací na míru pro klienty z různých odvětví. Specialista na React a Node.js ekosystém.',
-  },
-  {
-    year: '2020–2024',
-    role: 'Full-Stack Developer',
-    company: 'Tech Startup',
-    desc: 'Vývoj a správa SaaS platformy. Zodpovědný za frontend architekturu a API design.',
-  },
-  {
-    year: '2017–2020',
-    role: 'Frontend Developer',
-    company: 'Digital Agency',
-    desc: 'Tvorba webových prezentací a e-commerce řešení pro klienty. Práce s React, Vue.js a WordPressem.',
-  },
-]
+const techIcons = [Code2, Server, Database, Cpu, Globe, Layers]
 
 export default function About() {
+  const { t } = useLanguage()
+
+  const techCategories = t.about.techCategories.map((cat, i) => ({
+    label: cat.label,
+    icon: techIcons[i],
+    items: techItems[i],
+  }))
+
   return (
     <PageTransition>
       <div className="pt-20 min-h-screen">
@@ -67,9 +33,9 @@ export default function About() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-6xl mx-auto">
             <SectionHeader
-              label="O mně"
-              title='Vítejte, jsem <span class="text-gradient">Tomáš Obzina</span>'
-              subtitle="Full-Stack Developer s vášní pro čistý kód a skvělý uživatelský zážitek"
+              label={t.about.sectionLabel}
+              title={t.about.title}
+              subtitle={t.about.subtitle}
             />
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -79,13 +45,13 @@ export default function About() {
                   <div className="aspect-square rounded-2xl overflow-hidden border-gradient">
                     <img
                       src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80"
-                      alt="Moderní vývoj webových aplikací"
+                      alt={t.about.imageAlt}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="absolute -bottom-4 -right-4 bg-dark-card border border-gold/30 rounded-xl px-4 py-3 shadow-xl">
-                    <div className="text-gold font-bold text-lg">8+ let</div>
-                    <div className="text-white/50 text-xs">zkušeností</div>
+                    <div className="text-gold font-bold text-lg">{t.about.yearsValue}</div>
+                    <div className="text-white/50 text-xs">{t.about.yearsLabel}</div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -94,25 +60,17 @@ export default function About() {
               <AnimatedSection delay={0.2}>
                 <div className="space-y-6">
                   <h3 className="font-display text-2xl font-bold text-white">
-                    Váš technologický partner
+                    {t.about.partnerTitle}
                   </h3>
-                  <p className="text-white/60 leading-relaxed">
-                    Jsem full-stack developer se sídlem v České republice s více než 8 lety
-                    zkušeností v oblasti vývoje webových aplikací. Specializuji se na moderní
-                    JavaScript ekosystém a rád řeším komplexní technologické výzvy.
-                  </p>
-                  <p className="text-white/60 leading-relaxed">
-                    Věřím, že skvělý software není jen o funkčnosti — je o eleganci řešení,
-                    výkonu a uživatelském zážitku. Každý projekt přistupuji s maximální
-                    pečlivostí a důrazem na kvalitu.
-                  </p>
+                  <p className="text-white/60 leading-relaxed">{t.about.bio1}</p>
+                  <p className="text-white/60 leading-relaxed">{t.about.bio2}</p>
 
                   {/* Quick stats */}
                   <div className="grid grid-cols-3 gap-4 pt-2">
                     {[
-                      { value: '50+', label: 'Projektů' },
-                      { value: '30+', label: 'Klientů' },
-                      { value: '8+', label: 'Let praxe' },
+                      { value: '50+', label: t.about.stat1label },
+                      { value: '30+', label: t.about.stat2label },
+                      { value: '8+', label: t.about.stat3label },
                     ].map((s) => (
                       <div key={s.label} className="bg-dark-card border border-dark-border rounded-xl p-4 text-center">
                         <div className="text-gradient font-display font-bold text-2xl">{s.value}</div>
@@ -130,9 +88,9 @@ export default function About() {
         <section className="py-20 px-6 bg-dark-surface">
           <div className="max-w-6xl mx-auto">
             <SectionHeader
-              label="Technologie"
-              title='Co používám <span class="text-gradient">každý den</span>'
-              subtitle="Moderní stack pečlivě vybraný pro výkon, udržitelnost a developer experience"
+              label={t.about.techLabel}
+              title={`${t.about.techLabel} <span class="text-gradient">stack</span>`}
+              subtitle={t.about.techSubtitle}
             />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {techCategories.map((cat, i) => (
@@ -165,11 +123,11 @@ export default function About() {
         {/* Timeline */}
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <SectionHeader label="Zkušenosti" title='Moje <span class="text-gradient">kariéra</span>' />
+            <SectionHeader label={t.about.timelineLabel} title={t.about.timelineTitle} />
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-px bg-dark-border" />
               <div className="space-y-8">
-                {timeline.map((item, i) => (
+                {t.about.timeline.map((item, i) => (
                   <AnimatedSection key={item.year} delay={i * 0.1}>
                     <div className="pl-20 relative">
                       <div className="absolute left-6 top-1 w-4 h-4 rounded-full border-2 border-gold bg-dark" />
