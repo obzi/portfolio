@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import { LanguageProvider } from '@/context/LanguageContext'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Home from '@/pages/Home'
@@ -29,14 +30,16 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <Router>
-<div className="min-h-screen bg-dark flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="min-h-screen bg-dark flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <AnimatedRoutes />
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   )
 }
