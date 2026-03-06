@@ -146,7 +146,7 @@ export default function About() {
               <div className="absolute left-8 top-0 bottom-0 w-px bg-dark-border" />
               <div className="space-y-8">
                 {timeline.map((item, i) => (
-                  <AnimatedSection key={i} delay={i * 0.1}>
+                  <AnimatedSection key={item.year} delay={i * 0.1}>
                     <div className="pl-20 relative">
                       <div className="absolute left-6 top-1 w-4 h-4 rounded-full border-2 border-gold bg-dark" />
                       <div className="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-gold/30 transition-colors">

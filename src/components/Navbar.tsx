@@ -69,6 +69,8 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? 'Zavřít navigaci' : 'Otevřít navigaci'}
+          aria-expanded={mobileOpen}
           className="md:hidden text-white/70 hover:text-white cursor-pointer"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}

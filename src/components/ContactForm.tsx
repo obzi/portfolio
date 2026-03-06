@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
@@ -17,8 +17,15 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
+  useEffect(() => {
+    if (selectedPackage) {
+      setForm((prev) => ({ ...prev, package: selectedPackage }))
+    }
+  }, [selectedPackage])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    if (status !== 'idle') setStatus('idle')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,8 +55,9 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-white/50 text-sm mb-2">Vaše jméno *</label>
+          <label htmlFor="contact-name" className="block text-white/50 text-sm mb-2">Vaše jméno *</label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             value={form.name}
@@ -60,8 +68,9 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
           />
         </div>
         <div>
-          <label className="block text-white/50 text-sm mb-2">E-mail *</label>
+          <label htmlFor="contact-email" className="block text-white/50 text-sm mb-2">E-mail *</label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             value={form.email}
@@ -73,8 +82,9 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
         </div>
       </div>
       <div>
-        <label className="block text-white/50 text-sm mb-2">Zájem o balíček</label>
+        <label htmlFor="contact-package" className="block text-white/50 text-sm mb-2">Zájem o balíček</label>
         <select
+          id="contact-package"
           name="package"
           value={form.package}
           onChange={handleChange}
@@ -87,8 +97,9 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
         </select>
       </div>
       <div>
-        <label className="block text-white/50 text-sm mb-2">Popis projektu *</label>
+        <label htmlFor="contact-message" className="block text-white/50 text-sm mb-2">Popis projektu *</label>
         <textarea
+          id="contact-message"
           name="message"
           value={form.message}
           onChange={handleChange}

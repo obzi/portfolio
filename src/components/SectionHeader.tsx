@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 
+// title accepts HTML strings with <span> tags for gradient text styling
 interface Props {
   label: string
   title: string

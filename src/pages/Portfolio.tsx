@@ -79,12 +79,12 @@ export default function Portfolio() {
                         ))}
                       </div>
                       <div className="flex gap-3">
-                        <button className="flex items-center gap-1.5 text-white/40 hover:text-gold text-sm transition-colors cursor-pointer">
+                        <span className="flex items-center gap-1.5 text-white/20 text-sm">
                           <Github size={14} /> Kód
-                        </button>
-                        <button className="flex items-center gap-1.5 text-white/40 hover:text-gold text-sm transition-colors cursor-pointer">
+                        </span>
+                        <span className="flex items-center gap-1.5 text-white/20 text-sm">
                           <ExternalLink size={14} /> Demo
-                        </button>
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -9,6 +9,9 @@ export default function ParticleBackground() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+
     const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
