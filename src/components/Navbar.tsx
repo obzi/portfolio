@@ -2,19 +2,22 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-
-const navLinks = [
-  { path: '/', label: 'Domů' },
-  { path: '/about', label: 'O mně' },
-  { path: '/services', label: 'Služby' },
-  { path: '/pricing', label: 'Ceník' },
-  { path: '/contact', label: 'Kontakt' },
-]
+import { useLanguage } from '@/context/LanguageContext'
+import type { Lang } from '@/context/LanguageContext'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const { lang, setLang, t } = useLanguage()
+
+  const navLinks = [
+    { path: '/', label: t.nav.home },
+    { path: '/about', label: t.nav.about },
+    { path: '/services', label: t.nav.services },
+    { path: '/pricing', label: t.nav.pricing },
+    { path: '/contact', label: t.nav.contact },
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -25,6 +28,26 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false)
   }, [location])
+
+  function LangSwitcher({ className = '' }: { className?: string }) {
+    return (
+      <div className={`flex items-center gap-1 text-sm ${className}`}>
+        {(['cs', 'en'] as Lang[]).map((l, i) => (
+          <span key={l} className="flex items-center gap-1">
+            {i > 0 && <span className="text-white/20">|</span>}
+            <button
+              onClick={() => setLang(l)}
+              className={`font-medium transition-colors cursor-pointer ${
+                lang === l ? 'text-gold' : 'text-white/40 hover:text-white/70'
+              }`}
+            >
+              {l.toUpperCase()}
+            </button>
+          </span>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <motion.nav
@@ -38,8 +61,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-display text-xl font-bold text-gradient">TO</span>
-          <span className="text-white/60 text-sm font-light hidden sm:block">Tomáš Obzina</span>
+          <span className="font-display text-xl font-bold text-gradient">RapidLocalSites</span>
         </Link>
 
         {/* Desktop nav */}
@@ -62,14 +84,15 @@ export default function Navbar() {
             to="/contact"
             className="px-4 py-2 border border-gold text-gold text-sm font-medium rounded hover:bg-gold hover:text-dark transition-all duration-200"
           >
-            Kontaktujte mě
+            {t.nav.cta}
           </Link>
+          <LangSwitcher />
         </div>
 
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? 'Zavřít navigaci' : 'Otevřít navigaci'}
+          aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={mobileOpen}
           className="md:hidden text-white/70 hover:text-white cursor-pointer"
         >
@@ -98,6 +121,7 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <LangSwitcher className="py-2" />
             </div>
           </motion.div>
         )}
