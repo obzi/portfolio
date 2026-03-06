@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Github, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -11,10 +11,6 @@ export default function Footer() {
           <span className="text-white/40 text-sm">© {year} Tomáš Obzina</span>
         </div>
         <div className="flex items-center gap-6">
-          <a href="https://github.com/obzi" target="_blank" rel="noopener noreferrer"
-            className="text-white/40 hover:text-gold transition-colors cursor-pointer">
-            <Github size={18} />
-          </a>
           <a href="mailto:t.obzina81@gmail.com"
             className="text-white/40 hover:text-gold transition-colors cursor-pointer">
             <Mail size={18} />

@@ -1,17 +1,40 @@
 import { motion } from 'framer-motion'
-import { Code2, Database, Globe, Server, Smartphone, Cpu } from 'lucide-react'
+import { Code2, Database, Globe, Server, Layers, Cpu } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 
-const skills = [
-  { name: 'React / Next.js', level: 95, icon: Code2 },
-  { name: 'TypeScript', level: 90, icon: Code2 },
-  { name: 'Node.js / Express', level: 88, icon: Server },
-  { name: 'PostgreSQL / MongoDB', level: 82, icon: Database },
-  { name: 'REST API / GraphQL', level: 85, icon: Globe },
-  { name: 'React Native', level: 70, icon: Smartphone },
-  { name: 'Docker / DevOps', level: 72, icon: Cpu },
+const techCategories = [
+  {
+    label: 'Frontend',
+    icon: Code2,
+    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+  },
+  {
+    label: 'Backend',
+    icon: Server,
+    items: ['Node.js', 'Express', 'REST API', 'GraphQL', 'JWT auth'],
+  },
+  {
+    label: 'Databáze',
+    icon: Database,
+    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'Supabase'],
+  },
+  {
+    label: 'Infrastruktura',
+    icon: Cpu,
+    items: ['Docker', 'AWS', 'CI/CD', 'Vercel', 'Nginx'],
+  },
+  {
+    label: 'Integrace',
+    icon: Globe,
+    items: ['Stripe', 'SendGrid', 'Webhooks', 'OAuth 2.0', 'REST klienti'],
+  },
+  {
+    label: 'Přístupy',
+    icon: Layers,
+    items: ['Clean Architecture', 'TDD', 'Agile', 'Code review', 'DRY & SOLID'],
+  },
 ]
 
 const timeline = [
@@ -35,16 +58,11 @@ const timeline = [
   },
 ]
 
-const techStack = [
-  'React', 'Next.js', 'TypeScript', 'Node.js', 'Express',
-  'PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'AWS', 'Tailwind', 'GraphQL',
-]
-
 export default function About() {
   return (
     <PageTransition>
       <div className="pt-20 min-h-screen">
-        {/* Header */}
+        {/* Header + Bio */}
         <section className="py-20 px-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-6xl mx-auto">
@@ -55,17 +73,16 @@ export default function About() {
             />
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Photo */}
+              {/* Visual */}
               <AnimatedSection>
                 <div className="relative">
                   <div className="aspect-square rounded-2xl overflow-hidden border-gradient">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
-                      alt="Tomáš Obzina"
+                      src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80"
+                      alt="Moderní vývoj webových aplikací"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Floating badge */}
                   <div className="absolute -bottom-4 -right-4 bg-dark-card border border-gold/30 rounded-xl px-4 py-3 shadow-xl">
                     <div className="text-gold font-bold text-lg">8+ let</div>
                     <div className="text-white/50 text-xs">zkušeností</div>
@@ -89,14 +106,18 @@ export default function About() {
                     výkonu a uživatelském zážitku. Každý projekt přistupuji s maximální
                     pečlivostí a důrazem na kvalitu.
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-dark-card border border-dark-border text-white/60 text-sm rounded-full hover:border-gold/50 hover:text-gold transition-colors"
-                      >
-                        {tech}
-                      </span>
+
+                  {/* Quick stats */}
+                  <div className="grid grid-cols-3 gap-4 pt-2">
+                    {[
+                      { value: '50+', label: 'Projektů' },
+                      { value: '30+', label: 'Klientů' },
+                      { value: '8+', label: 'Let praxe' },
+                    ].map((s) => (
+                      <div key={s.label} className="bg-dark-card border border-dark-border rounded-xl p-4 text-center">
+                        <div className="text-gradient font-display font-bold text-2xl">{s.value}</div>
+                        <div className="text-white/40 text-xs mt-1">{s.label}</div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -105,31 +126,34 @@ export default function About() {
           </div>
         </section>
 
-        {/* Skills */}
+        {/* Tech stack by category */}
         <section className="py-20 px-6 bg-dark-surface">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeader label="Dovednosti" title="Technologie a <span class='text-gradient'>expertíza</span>" />
-            <div className="space-y-6">
-              {skills.map((skill, i) => (
-                <AnimatedSection key={skill.name} delay={i * 0.05}>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-dark-card border border-dark-border flex items-center justify-center flex-shrink-0">
-                      <skill.icon size={18} className="text-gold" />
+          <div className="max-w-6xl mx-auto">
+            <SectionHeader
+              label="Technologie"
+              title='Co používám <span class="text-gradient">každý den</span>'
+              subtitle="Moderní stack pečlivě vybraný pro výkon, udržitelnost a developer experience"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {techCategories.map((cat, i) => (
+                <AnimatedSection key={cat.label} delay={i * 0.07}>
+                  <div className="bg-dark-card border border-dark-border rounded-2xl p-5 hover:border-gold/30 transition-colors group">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                        <cat.icon size={17} className="text-gold" />
+                      </div>
+                      <span className="text-white font-semibold text-sm">{cat.label}</span>
                     </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between mb-2">
-                        <span className="text-white text-sm font-medium">{skill.name}</span>
-                        <span className="text-white/40 text-sm">{skill.level}%</span>
-                      </div>
-                      <div className="h-1.5 bg-dark-card rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: i * 0.05, ease: 'easeOut' }}
-                          className="h-full bg-gradient-to-r from-gold-dark to-gold rounded-full"
-                        />
-                      </div>
+                    <div className="flex flex-wrap gap-2">
+                      {cat.items.map((item) => (
+                        <motion.span
+                          key={item}
+                          whileHover={{ scale: 1.05 }}
+                          className="px-2.5 py-1 bg-dark border border-dark-border text-white/55 text-xs rounded-full hover:border-gold/40 hover:text-gold transition-colors"
+                        >
+                          {item}
+                        </motion.span>
+                      ))}
                     </div>
                   </div>
                 </AnimatedSection>

@@ -1,4 +1,4 @@
-import { Mail, Github, MapPin, Clock } from 'lucide-react'
+import { Mail, MapPin, Clock } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
@@ -6,7 +6,6 @@ import ContactForm from '@/components/ContactForm'
 
 const info = [
   { icon: Mail, label: 'E-mail', value: 't.obzina81@gmail.com', href: 'mailto:t.obzina81@gmail.com' },
-  { icon: Github, label: 'GitHub', value: 'github.com/obzi', href: 'https://github.com/obzi' },
   { icon: MapPin, label: 'Lokace', value: 'Česká republika', href: null },
   { icon: Clock, label: 'Dostupnost', value: 'Po–Pá, 9:00–18:00', href: null },
 ]

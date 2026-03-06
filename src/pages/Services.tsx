@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Code2, Server, Smartphone, BarChart2, Shield, Rocket } from 'lucide-react'
+import { Code2, Server, Smartphone, BarChart2, Shield } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
@@ -35,12 +35,6 @@ const services = [
     title: 'Správa & Údržba',
     desc: 'Dlouhodobá spolupráce, pravidelné aktualizace, monitoring a rychlé řešení problémů. Váš web v bezpečných rukou.',
     features: ['Monitoring 24/7', 'Pravidelné zálohy', 'Aktualizace závislostí', 'Bug fixing', 'Technická podpora'],
-  },
-  {
-    icon: Rocket,
-    title: 'Konzultace & Poradenství',
-    desc: 'Technologická strategie, výběr správného stacku, architektura projektu. Pomáhám firmám činit správná technická rozhodnutí.',
-    features: ['Tech stack poradenství', 'Architektura systému', 'Project kickoff', 'Code review', 'Mentoring týmu'],
   },
 ]
 
