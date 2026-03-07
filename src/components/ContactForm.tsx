@@ -3,12 +3,14 @@ import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { EMAILJS_CONFIG } from '@/config/emailjs'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface Props {
   selectedPackage?: string
 }
 
 export default function ContactForm({ selectedPackage = '' }: Props) {
+  const { t } = useLanguage()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -55,7 +57,9 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="contact-name" className="block text-white/50 text-sm mb-2">Vaše jméno *</label>
+          <label htmlFor="contact-name" className="block text-white/50 text-sm mb-2">
+            {t.form.nameLabel}
+          </label>
           <input
             id="contact-name"
             type="text"
@@ -63,12 +67,14 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
             value={form.name}
             onChange={handleChange}
             required
-            placeholder="Jan Novák"
+            placeholder={t.form.namePlaceholder}
             className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-gold/50 transition-colors"
           />
         </div>
         <div>
-          <label htmlFor="contact-email" className="block text-white/50 text-sm mb-2">E-mail *</label>
+          <label htmlFor="contact-email" className="block text-white/50 text-sm mb-2">
+            {t.form.emailLabel}
+          </label>
           <input
             id="contact-email"
             type="email"
@@ -76,13 +82,15 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
             value={form.email}
             onChange={handleChange}
             required
-            placeholder="jan@firma.cz"
+            placeholder={t.form.emailPlaceholder}
             className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-gold/50 transition-colors"
           />
         </div>
       </div>
       <div>
-        <label htmlFor="contact-package" className="block text-white/50 text-sm mb-2">Zájem o balíček</label>
+        <label htmlFor="contact-package" className="block text-white/50 text-sm mb-2">
+          {t.form.packageLabel}
+        </label>
         <select
           id="contact-package"
           name="package"
@@ -90,14 +98,18 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
           onChange={handleChange}
           className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold/50 transition-colors"
         >
-          <option value="">Vyberte balíček (nepovinné)</option>
-          <option value="Starter">Starter — 15 000–30 000 Kč</option>
-          <option value="Pro">Pro — 30 000–70 000 Kč</option>
-          <option value="Enterprise">Enterprise — od 70 000 Kč</option>
+          <option value="">{t.form.packagePlaceholder}</option>
+          {t.pricing.cards.map((pkg) => (
+            <option key={pkg.name} value={pkg.name}>
+              {pkg.name} — {pkg.price}
+            </option>
+          ))}
         </select>
       </div>
       <div>
-        <label htmlFor="contact-message" className="block text-white/50 text-sm mb-2">Popis projektu *</label>
+        <label htmlFor="contact-message" className="block text-white/50 text-sm mb-2">
+          {t.form.messageLabel}
+        </label>
         <textarea
           id="contact-message"
           name="message"
@@ -105,7 +117,7 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
           onChange={handleChange}
           required
           rows={5}
-          placeholder="Popište váš projekt, cíle a požadavky..."
+          placeholder={t.form.messagePlaceholder}
           className="w-full bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-gold/50 transition-colors resize-none"
         />
       </div>
@@ -113,13 +125,13 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
       {status === 'success' && (
         <div className="flex items-center gap-3 text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-lg p-4">
           <CheckCircle size={20} />
-          <span>Zpráva odeslána! Ozveme se do 24 hodin.</span>
+          <span>{t.form.successMsg}</span>
         </div>
       )}
       {status === 'error' && (
         <div className="flex items-center gap-3 text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg p-4">
           <AlertCircle size={20} />
-          <span>Chyba odeslání. Zkuste znovu nebo napište přímo na t.obzina81@gmail.com</span>
+          <span>{t.form.errorMsg}</span>
         </div>
       )}
 
@@ -131,7 +143,7 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
         className="w-full py-4 bg-gold text-dark font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-gold-light transition-colors shadow-lg shadow-gold/20 disabled:opacity-50 cursor-pointer"
       >
         <Send size={18} />
-        {status === 'sending' ? 'Odesílám...' : 'Odeslat poptávku'}
+        {status === 'sending' ? t.form.sendingLabel : t.form.submitLabel}
       </motion.button>
     </form>
   )

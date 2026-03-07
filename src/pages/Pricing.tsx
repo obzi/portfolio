@@ -5,61 +5,14 @@ import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import ContactForm from '@/components/ContactForm'
-
-const packages = [
-  {
-    name: 'Starter',
-    price: '15 000 – 30 000 Kč',
-    desc: 'Ideální pro malé firmy a podnikatele, kteří potřebují profesionální webovou prezentaci.',
-    features: [
-      'Prezentační web (5–10 stránek)',
-      'Responzivní design',
-      'Základní SEO optimalizace',
-      'Kontaktní formulář',
-      'Nasazení na hosting',
-      '1 měsíc bezplatné podpory',
-    ],
-    popular: false,
-    cta: 'Začít s Starter',
-  },
-  {
-    name: 'Pro',
-    price: '30 000 – 70 000 Kč',
-    desc: 'Pro firmy, které potřebují plnohodnotnou webovou aplikaci s vlastní logikou a integrací.',
-    features: [
-      'Webová aplikace / SaaS',
-      'Uživatelská autentizace',
-      'Databáze a API',
-      'Admin panel',
-      'Integrace platebních bran',
-      'E-mail notifikace',
-      'CI/CD pipeline',
-      '3 měsíce podpory',
-    ],
-    popular: true,
-    cta: 'Vybrat Pro',
-  },
-  {
-    name: 'Enterprise',
-    price: 'od 70 000 Kč',
-    desc: 'Komplexní řešení pro větší projekty a firmy s vysokými nároky na výkon a škálovatelnost.',
-    features: [
-      'Komplexní systémy na míru',
-      'Microservices architektura',
-      'High-performance optimalizace',
-      'Vlastní DevOps infrastruktura',
-      'Bezpečnostní audit',
-      'Load balancing & škálování',
-      'SLA garance',
-      '12 měsíců prioritní podpory',
-    ],
-    popular: false,
-    cta: 'Kontaktujte mě',
-  },
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Pricing() {
   const [selectedPackage, setSelectedPackage] = useState('')
+  const { t } = useLanguage()
+
+  // Mark the middle card (index 1) as popular
+  const cards = t.pricing.cards.map((pkg, i) => ({ ...pkg, popular: i === 1 }))
 
   return (
     <PageTransition>
@@ -69,13 +22,13 @@ export default function Pricing() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-7xl mx-auto">
             <SectionHeader
-              label="Ceník"
-              title='Transparentní <span class="text-gradient">ceny</span>'
-              subtitle="Každý projekt je unikátní. Uvedené rozsahy jsou orientační — finální cena závisí na rozsahu a specifikách vašeho projektu."
+              label={t.pricing.sectionLabel}
+              title={t.pricing.title}
+              subtitle={t.pricing.subtitle}
             />
 
             <div className="grid md:grid-cols-3 gap-6">
-              {packages.map((pkg, i) => (
+              {cards.map((pkg, i) => (
                 <AnimatedSection key={pkg.name} delay={i * 0.1}>
                   <motion.div
                     whileHover={{ y: -6 }}
@@ -88,7 +41,7 @@ export default function Pricing() {
                     {pkg.popular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                         <span className="flex items-center gap-1 bg-gold text-dark text-xs font-bold px-3 py-1 rounded-full">
-                          <Star size={10} fill="currentColor" /> Nejoblíbenější
+                          <Star size={10} fill="currentColor" /> {t.pricing.popular}
                         </span>
                       </div>
                     )}
@@ -127,9 +80,7 @@ export default function Pricing() {
             </div>
 
             <AnimatedSection className="mt-12 text-center">
-              <p className="text-white/40 text-sm">
-                Ceny jsou bez DPH. Platba možná po etapách. Vždy dostanete detailní nabídku před zahájením práce.
-              </p>
+              <p className="text-white/40 text-sm">{t.pricing.footerNote}</p>
             </AnimatedSection>
           </div>
         </section>
@@ -138,9 +89,9 @@ export default function Pricing() {
         <section id="contact-form" className="py-20 px-6 bg-dark-surface">
           <div className="max-w-2xl mx-auto">
             <SectionHeader
-              label="Poptávka"
-              title='Nezávazná <span class="text-gradient">poptávka</span>'
-              subtitle="Popište váš projekt a do 24 hodin se vám ozvu s nabídkou na míru."
+              label={t.pricing.formLabel}
+              title={t.pricing.formTitle}
+              subtitle={t.pricing.formSubtitle}
             />
             <AnimatedSection>
               <div className="bg-dark-card border border-dark-border rounded-2xl p-8">
