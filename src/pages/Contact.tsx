@@ -3,14 +3,17 @@ import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import ContactForm from '@/components/ContactForm'
-
-const info = [
-  { icon: Mail, label: 'E-mail', value: 't.obzina81@gmail.com', href: 'mailto:t.obzina81@gmail.com' },
-  { icon: MapPin, label: 'Lokace', value: 'Česká republika', href: null },
-  { icon: Clock, label: 'Dostupnost', value: 'Po–Pá, 9:00–18:00', href: null },
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Contact() {
+  const { t } = useLanguage()
+
+  const info = [
+    { icon: Mail, label: t.contact.emailLabel, value: 't.obzina81@gmail.com', href: 'mailto:t.obzina81@gmail.com' },
+    { icon: MapPin, label: t.contact.locationLabel, value: t.contact.locationValue, href: null },
+    { icon: Clock, label: t.contact.availLabel, value: t.contact.availValue, href: null },
+  ]
+
   return (
     <PageTransition>
       <div className="pt-20 min-h-screen">
@@ -18,9 +21,9 @@ export default function Contact() {
           <div className="absolute top-0 left-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl -translate-x-1/2" />
           <div className="max-w-6xl mx-auto">
             <SectionHeader
-              label="Kontakt"
-              title='Pojďme <span class="text-gradient">spolupracovat</span>'
-              subtitle="Máte projekt, nápad nebo otázku? Rád si promluvíme. Obvykle reaguji do 24 hodin."
+              label={t.contact.sectionLabel}
+              title={t.contact.title}
+              subtitle={t.contact.subtitle}
             />
 
             <div className="grid md:grid-cols-2 gap-12">
@@ -28,11 +31,10 @@ export default function Contact() {
               <AnimatedSection>
                 <div className="space-y-8">
                   <div>
-                    <h3 className="font-display text-2xl font-bold text-white mb-3">Napište mi</h3>
-                    <p className="text-white/55 leading-relaxed">
-                      Ať už hledáte vývojáře pro svůj projekt, potřebujete technickou konzultaci
-                      nebo máte jakoukoliv otázku — neváhejte se ozvat.
-                    </p>
+                    <h3 className="font-display text-2xl font-bold text-white mb-3">
+                      {t.contact.writeTitle}
+                    </h3>
+                    <p className="text-white/55 leading-relaxed">{t.contact.writeText}</p>
                   </div>
 
                   <div className="space-y-4">
@@ -44,9 +46,10 @@ export default function Contact() {
                         <div>
                           <div className="text-white/40 text-xs uppercase tracking-wider">{label}</div>
                           {href ? (
-                            <a href={href} target={href.startsWith('http') ? '_blank' : undefined}
-                              rel="noopener noreferrer"
-                              className="text-white hover:text-gold transition-colors text-sm cursor-pointer">
+                            <a
+                              href={href}
+                              className="text-white hover:text-gold transition-colors text-sm cursor-pointer"
+                            >
                               {value}
                             </a>
                           ) : (
@@ -61,8 +64,8 @@ export default function Contact() {
                   <div className="flex items-center gap-3 p-4 bg-dark-card border border-dark-border rounded-xl">
                     <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
                     <div>
-                      <div className="text-white text-sm font-medium">Dostupný pro nové projekty</div>
-                      <div className="text-white/40 text-xs">Aktuálně přijímám nové zakázky</div>
+                      <div className="text-white text-sm font-medium">{t.contact.availBadge}</div>
+                      <div className="text-white/40 text-xs">{t.contact.availBadgeSub}</div>
                     </div>
                   </div>
                 </div>
