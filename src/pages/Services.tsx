@@ -4,6 +4,7 @@ import { Code2, Server, Smartphone, Shield } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
+import SEO from '@/components/SEO'
 import { useLanguage } from '@/context/LanguageContext'
 
 const SERVICE_ICONS = [Code2, Server, Smartphone, Shield]
@@ -13,6 +14,7 @@ export default function Services() {
 
   return (
     <PageTransition>
+      <SEO titleKey="servicesTitle" descKey="servicesDesc" />
       <div className="pt-20 min-h-screen">
         <section className="py-20 px-6 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />

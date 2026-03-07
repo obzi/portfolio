@@ -5,6 +5,7 @@ import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import ContactForm from '@/components/ContactForm'
+import SEO from '@/components/SEO'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Pricing() {
@@ -16,6 +17,7 @@ export default function Pricing() {
 
   return (
     <PageTransition>
+      <SEO titleKey="pricingTitle" descKey="pricingDesc" />
       <div className="pt-20 min-h-screen">
         {/* Packages */}
         <section className="py-20 px-6 relative overflow-hidden">

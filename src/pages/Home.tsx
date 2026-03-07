@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowDown, Code2, Layers, Zap } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import ParticleBackground from '@/components/ParticleBackground'
+import SEO from '@/components/SEO'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
 
   return (
     <PageTransition>
+      <SEO titleKey="homeTitle" descKey="homeDesc" />
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <ParticleBackground />

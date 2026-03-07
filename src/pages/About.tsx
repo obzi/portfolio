@@ -3,6 +3,7 @@ import { Code2, Database, Globe, Server, Layers, Cpu } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
+import SEO from '@/components/SEO'
 import { useLanguage } from '@/context/LanguageContext'
 
 // Tech stack items are NOT localized — these are technology names
@@ -27,6 +28,7 @@ export default function About() {
 
   return (
     <PageTransition>
+      <SEO titleKey="aboutTitle" descKey="aboutDesc" />
       <div className="pt-20 min-h-screen">
         {/* Header + Bio */}
         <section className="py-20 px-6 relative overflow-hidden">
