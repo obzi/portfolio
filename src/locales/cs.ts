@@ -120,14 +120,14 @@ export const cs: Translations = {
         name: 'Starter',
         price: '15 000 – 30 000 Kč',
         desc: 'Ideální pro malé firmy a podnikatele, kteří potřebují profesionální webovou prezentaci.',
-        features: ['Prezentační web (5–10 stránek)', 'Responzivní design', 'Základní SEO optimalizace', 'Kontaktní formulář', 'Nasazení na hosting', '1 měsíc bezplatné podpory'],
+        features: ['Prezentační web (5–10 stránek)', 'Responzivní design', 'Základní SEO optimalizace', 'Kontaktní formulář', 'Basic admin panel', 'Nasazení na hosting', '1 měsíc bezplatné podpory'],
         cta: 'Začít s Starter',
       },
       {
         name: 'Pro',
         price: '30 000 – 70 000 Kč',
         desc: 'Pro firmy, které potřebují plnohodnotnou webovou aplikaci s vlastní logikou a integrací.',
-        features: ['Webová aplikace / SaaS', 'Uživatelská autentizace', 'Databáze a API', 'Admin panel', 'Integrace platebních bran', 'E-mail notifikace', 'CI/CD pipeline', '3 měsíce podpory'],
+        features: ['Webová aplikace / SaaS', 'Uživatelská autentizace', 'Databáze a API', 'Full administrace', 'Integrace platebních bran', 'E-mail notifikace', 'CI/CD pipeline', '3 měsíce podpory'],
         cta: 'Vybrat Pro',
       },
       {
