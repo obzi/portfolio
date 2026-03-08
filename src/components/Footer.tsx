@@ -4,17 +4,19 @@ import { useLanguage } from '@/context/LanguageContext'
 
 export default function Footer() {
   const { t } = useLanguage()
-  const year = new Date().getFullYear()
+  const startYear = 2024
+  const currentYear = new Date().getFullYear()
+  const yearDisplay = currentYear > startYear ? `${startYear}–${currentYear}` : String(startYear)
   return (
     <footer className="border-t border-dark-border bg-dark-surface">
       <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <span className="font-display font-bold text-gradient text-sm">RapidLocalSites</span>
-          <span className="text-white/40 text-sm">{t.footer.copyright.replace('{year}', String(year))}</span>
+          <span className="text-white/40 text-sm">{t.footer.copyright.replace('{year}', yearDisplay)}</span>
         </div>
         <div className="flex items-center gap-6">
           <a
-            href="mailto:t.obzina81@gmail.com"
+            href="mailto:contact@rapidlocalsites.eu"
             className="text-white/40 hover:text-gold transition-colors cursor-pointer"
           >
             <Mail size={18} />
