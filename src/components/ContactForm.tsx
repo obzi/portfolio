@@ -42,7 +42,7 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
           from_email: form.email,
           package: form.package,
           message: form.message,
-          to_email: 't.obzina81@gmail.com',
+          to_email: 'contact@rapidlocalsites.eu',
         },
         EMAILJS_CONFIG.publicKey
       )
@@ -101,7 +101,7 @@ export default function ContactForm({ selectedPackage = '' }: Props) {
           <option value="">{t.form.packagePlaceholder}</option>
           {t.pricing.cards.map((pkg) => (
             <option key={pkg.name} value={pkg.name}>
-              {pkg.name} — {pkg.price}
+              {pkg.name}
             </option>
           ))}
         </select>

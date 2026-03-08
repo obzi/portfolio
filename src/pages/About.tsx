@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Code2, Database, Globe, Server, Layers, Cpu } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
+import ParticleBackground from '@/components/ParticleBackground'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import SEO from '@/components/SEO'
@@ -32,6 +33,7 @@ export default function About() {
       <div className="pt-20 min-h-screen">
         {/* Header + Bio */}
         <section className="py-20 px-6 relative overflow-hidden">
+          <ParticleBackground />
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-6xl mx-auto">
             <SectionHeader

@@ -165,7 +165,7 @@ export const cs: Translations = {
     submitLabel: 'Odeslat poptávku',
     sendingLabel: 'Odesílám...',
     successMsg: 'Zpráva odeslána! Ozvu se do 24 hodin.',
-    errorMsg: 'Chyba odeslání. Zkuste znovu nebo napište přímo na t.obzina81@gmail.com',
+    errorMsg: 'Chyba odeslání. Zkuste znovu nebo napište přímo na contact@rapidlocalsites.eu',
   },
   footer: {
     copyright: '© {year} RapidLocalSites',

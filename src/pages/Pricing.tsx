@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Star } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
+import ParticleBackground from '@/components/ParticleBackground'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import ContactForm from '@/components/ContactForm'
@@ -21,6 +22,7 @@ export default function Pricing() {
       <div className="pt-20 min-h-screen">
         {/* Packages */}
         <section className="py-20 px-6 relative overflow-hidden">
+          <ParticleBackground />
           <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-7xl mx-auto">
             <SectionHeader

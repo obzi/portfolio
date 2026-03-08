@@ -165,7 +165,7 @@ export const en: Translations = {
     submitLabel: 'Send inquiry',
     sendingLabel: 'Sending...',
     successMsg: 'Message sent! I\'ll get back to you within 24 hours.',
-    errorMsg: 'Send error. Please try again or email me at t.obzina81@gmail.com',
+    errorMsg: 'Send error. Please try again or email me at contact@rapidlocalsites.eu',
   },
   footer: {
     copyright: '© {year} RapidLocalSites',

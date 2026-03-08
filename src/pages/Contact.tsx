@@ -1,5 +1,6 @@
 import { Mail, MapPin, Clock } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
+import ParticleBackground from '@/components/ParticleBackground'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import ContactForm from '@/components/ContactForm'
@@ -10,7 +11,7 @@ export default function Contact() {
   const { t } = useLanguage()
 
   const info = [
-    { icon: Mail, label: t.contact.emailLabel, value: 't.obzina81@gmail.com', href: 'mailto:t.obzina81@gmail.com' },
+    { icon: Mail, label: t.contact.emailLabel, value: 'contact@rapidlocalsites.eu', href: 'mailto:contact@rapidlocalsites.eu' },
     { icon: MapPin, label: t.contact.locationLabel, value: t.contact.locationValue, href: null },
     { icon: Clock, label: t.contact.availLabel, value: t.contact.availValue, href: null },
   ]
@@ -20,6 +21,7 @@ export default function Contact() {
       <SEO titleKey="contactTitle" descKey="contactDesc" />
       <div className="pt-20 min-h-screen">
         <section className="py-20 px-6 relative overflow-hidden">
+          <ParticleBackground />
           <div className="absolute top-0 left-1/2 w-96 h-96 bg-gold/5 rounded-full blur-3xl -translate-x-1/2" />
           <div className="max-w-6xl mx-auto">
             <SectionHeader

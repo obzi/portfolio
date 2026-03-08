@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Code2, Server, Smartphone, Shield } from 'lucide-react'
 import PageTransition from '@/components/PageTransition'
+import ParticleBackground from '@/components/ParticleBackground'
 import SectionHeader from '@/components/SectionHeader'
 import AnimatedSection from '@/components/AnimatedSection'
 import SEO from '@/components/SEO'
@@ -17,6 +18,7 @@ export default function Services() {
       <SEO titleKey="servicesTitle" descKey="servicesDesc" />
       <div className="pt-20 min-h-screen">
         <section className="py-20 px-6 relative overflow-hidden">
+          <ParticleBackground />
           <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
           <div className="max-w-5xl mx-auto">
             <SectionHeader
