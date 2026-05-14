@@ -120,14 +120,14 @@ export const en: Translations = {
         name: 'Starter',
         price: '€600 – €1,200',
         desc: 'Ideal for small businesses and entrepreneurs who need a professional web presence.',
-        features: ['Presentation website (5–10 pages)', 'Responsive design', 'Basic SEO optimization', 'Contact form', 'Hosting deployment', '1 month free support'],
+        features: ['Presentation website (5–10 pages)', 'Responsive design', 'Basic SEO optimization', 'Contact form', 'Basic admin panel', 'Hosting deployment', '1 month free support'],
         cta: 'Get started',
       },
       {
         name: 'Pro',
         price: '€1,200 – €2,800',
         desc: 'For businesses that need a full-featured web application with custom logic and integrations.',
-        features: ['Web application / SaaS', 'User authentication', 'Database and API', 'Admin panel', 'Payment gateway integration', 'Email notifications', 'CI/CD pipeline', '3 months support'],
+        features: ['Web application / SaaS', 'User authentication', 'Database and API', 'Full administration', 'Payment gateway integration', 'Email notifications', 'CI/CD pipeline', '3 months support'],
         cta: 'Choose Pro',
       },
       {
